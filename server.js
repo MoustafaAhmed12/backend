@@ -35,8 +35,8 @@ app.post("/send-email", async (req, res) => {
 
 if (templateName === "email1.html") {
   attachments.push({
-    filename: "email1.jpeg",
-    path: path.join("templates", "images", "email1.jpeg"),
+    filename: "1.jpeg",
+    path: path.join("templates", "images", "1.jpeg"),
     cid: "image1"
   });
 } else if (templateName === "email2.html") {
