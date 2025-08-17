@@ -38,18 +38,18 @@ app.post("/send-email", async (req, res) => {
     html: htmlContent,
     attachments: [
       {
-        filename: "email1.jpg", // الصورة للتمبلت email1
-        path: path.join("templates", "images", "1.jpeg"),
+        filename: "email1.jpeg", // الصورة للتمبلت email1
+        path: path.join("templates", "images", "email1.jpeg"),
         cid: "image1", // معرف فريد لكل صورة
       },
       {
-        filename: "email2.jpg",
-        path: path.join("templates", "images", "2.jpeg"),
+        filename: "email2.jpeg",
+        path: path.join("templates", "images", "email2.jpeg"),
         cid: "image2",
       },
       {
-        filename: "email3.jpg",
-        path: path.join("templates", "images", "3.jpeg"),
+        filename: "email3.jpeg",
+        path: path.join("templates", "images", "email3.jpeg"),
         cid: "image3",
       },
     ],
