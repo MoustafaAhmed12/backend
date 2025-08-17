@@ -31,30 +31,35 @@ app.post("/send-email", async (req, res) => {
       },
     });
 
-  const info = await transporter.sendMail({
-    from: `"Moustafa Ahmed" <${process.env.EMAIL}>`,
-    to: emails,
-    subject,
-    html: htmlContent,
-    attachments: [
-      {
-        filename: "email1.jpeg", // الصورة للتمبلت email1
-        path: path.join("templates", "images", "email1.jpeg"),
-        cid: "image1", // معرف فريد لكل صورة
-      },
-      {
-        filename: "email2.jpeg",
-        path: path.join("templates", "images", "email2.jpeg"),
-        cid: "image2",
-      },
-      {
-        filename: "email3.jpeg",
-        path: path.join("templates", "images", "email3.jpeg"),
-        cid: "image3",
-      },
-    ],
-  });
+    let attachments = [];
 
+if (templateName === "email1.html") {
+  attachments.push({
+    filename: "email1.jpeg",
+    path: path.join("templates", "images", "email1.jpeg"),
+    cid: "image1"
+  });
+} else if (templateName === "email2.html") {
+  attachments.push({
+    filename: "email2.jpeg",
+    path: path.join("templates", "images", "email2.jpeg"),
+    cid: "image2"
+  });
+} else {
+  attachments.push({
+    filename: "email3.jpeg",
+    path: path.join("templates", "images", "email3.jpeg"),
+    cid: "image3"
+  });
+}
+
+ const info = await transporter.sendMail({
+  from: `"Moustafa Ahmed" <${process.env.EMAIL}>`,
+  to: emails,
+  subject,
+  html: htmlContent,
+  attachments,
+});
 
     console.log(info.messageId);
     res.json({ success: true, message: "Emails sent successfully!" });
