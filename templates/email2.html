@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لأبحاثٍ أكاديمية تليق بك... دعنا نترجمها باحتراف</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Cairo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0f4c75 0%,
+          #3282b8 50%,
+          #bbe1fa 100%
+        );
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      .email-container {
+        max-width: 650px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 25px 70px rgba(15, 76, 117, 0.2);
+        position: relative;
+      }
+
+      .email-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(
+          90deg,
+          #0f4c75,
+          #3282b8,
+          #bbe1fa,
+          #3282b8,
+          #0f4c75
+        );
+        background-size: 200% 100%;
+        animation: gradient 3s ease infinite;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .header {
+        background: linear-gradient(
+          135deg,
+          #0f4c75 0%,
+          #2c5aa0 50%,
+          #3282b8 100%
+        );
+        color: white;
+        padding: 50px 30px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        flex-direction: row;
+      }
+
+      .logo img {
+        height: 90px;
+        width: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .tagline {
+        font-size: 20px;
+        opacity: 0.95;
+        font-weight: 500;
+        margin-top: 10px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      .translation-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .content {
+        padding: 45px 35px;
+        background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+      }
+
+      .greeting {
+        font-size: 22px;
+        color: #1a202c;
+        margin-bottom: 30px;
+        font-weight: 600;
+      }
+
+      .main-text {
+        font-size: 17px;
+        color: #2d3748;
+        margin-bottom: 35px;
+        line-height: 1.9;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 4px solid #3282b8;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .services-section {
+        background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
+        padding: 35px;
+        border-radius: 20px;
+        margin: 35px 0;
+        border: 2px solid #e2e8f0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .services-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #3282b8, #bbe1fa);
+        opacity: 0.1;
+        border-radius: 50%;
+        transform: translate(30px, -30px);
+      }
+
+      .services-title {
+        font-size: 20px;
+        color: #0f4c75;
+        margin-bottom: 25px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .service-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 18px;
+        font-size: 16px;
+        color: #2d3748;
+        line-height: 1.7;
+        background: #f8fafc;
+        padding: 15px;
+        border-radius: 12px;
+        border-right: 3px solid #3282b8;
+        transition: all 0.3s ease;
+      }
+
+      .service-item:hover {
+        transform: translateX(-5px);
+        box-shadow: 0 5px 15px rgba(50, 130, 184, 0.15);
+      }
+
+      .service-item::before {
+        content: "🔤";
+        margin-left: 12px;
+        margin-top: 2px;
+        font-size: 18px;
+      }
+
+      .image-placeholder {
+        width: 100%;
+        height: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+        margin: 35px 0;
+        /* box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); */
+        position: relative;
+      }
+
+      .image-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .contact-section {
+        text-align: center;
+        margin: 40px 0;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        border: 1px solid #ddd;
+      }
+
+      .contact-text {
+        font-size: 18px;
+        color: #234e52;
+        margin-bottom: 25px;
+        font-weight: 600;
+      }
+
+      .whatsapp-button {
+        display: inline-block;
+        background: #496B89;
+        color: white;
+        padding: 10px 40px;
+        text-decoration: none;
+        border-radius: 60px;
+        font-weight: 700;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .whatsapp-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .whatsapp-button:hover::before {
+        left: 100%;
+      }
+
+      .whatsapp-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 45px rgba(32, 191, 107, 0.4);
+      }
+
+      .social-media {
+        text-align: center;
+        margin: 45px 0 35px;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .social-icon {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-icon::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s;
+      }
+
+      .social-icon:hover::before {
+        transform: translateX(100%);
+      }
+
+      .facebook {
+        background: linear-gradient(135deg, #1877f2, #166fe5);
+      }
+      .twitter {
+        background: linear-gradient(135deg, #1da1f2, #0d8bd9);
+      }
+      .linkedin {
+        background: linear-gradient(135deg, #0077b5, #005885);
+      }
+      .instagram {
+        background: linear-gradient(135deg, #e4405f, #833ab4);
+      }
+      .youtube {
+        background: linear-gradient(135deg, #ff0000, #cc0000);
+      }
+      .website {
+        background: linear-gradient(135deg, #0f4c75, #3282b8);
+      }
+      .whatsapp-icon {
+        background: linear-gradient(135deg, #25d366, #128c7e);
+      }
+
+      .social-icon:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .footer {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 35px 30px;
+        text-align: center;
+        position: relative;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #3282b8, #bbe1fa, #3282b8);
+      }
+
+      .signature {
+        font-size: 18px;
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+
+      .experience {
+        font-size: 15px;
+        opacity: 0.9;
+        font-weight: 400;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 10px;
+        }
+
+        .content {
+          padding: 25px 20px;
+        }
+
+        .services-section {
+          padding: 25px 20px;
+        }
+
+        .logo {
+          font-size: 26px;
+        }
+
+        .tagline {
+          font-size: 16px;
+        }
+
+        .social-icons {
+          gap: 15px;
+        }
+
+        .social-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 20px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .logo {
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+        }
+
+        .main-text,
+        .service-item {
+          font-size: 15px;
+        }
+
+        .contact-section {
+          padding: 20px 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <!-- Header -->
+      <div class="header">
+        <!-- <div class="translation-icon">🌐📝</div> -->
+        <div class="logo">
+          <img
+            src="https://academiaglobe.com/images/logo.png"
+            alt="أكاديميا جلوب"
+          />
+        </div>
+        <div class="tagline">
+          لأبحاثٍ أكاديمية تليق بك... دعنا نترجمها باحتراف
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <div class="greeting">مرحباً،</div>
+
+        <div class="main-text">
+          هل تبحث عن شريك محترف في الترجمة الأكاديمية؟ في أكاديميا جلوب نساعدك
+          على ترجمة بحثك بدقة واحترافية عالية تلبي معايير النشر الدولي.
+        </div>
+
+        <!-- Services Section -->
+        <div class="services-section">
+          <div class="services-title">🔹 خدماتنا تشمل:</div>
+
+          <div class="service-item">
+            الترجمة الأكاديمية للأبحاث العلمية، لغرض النشر الدولي لترقية أعضاء
+            هيئة التدريس
+          </div>
+
+          <div class="service-item">
+            ترجمة الدراسات السابقة من الإنجليزية إلى العربية ومن العربية إلى
+            الإنجليزية بصيغة أكاديمية علمية وتربوية
+          </div>
+
+          <div class="service-item">
+            ترجمة متطلبات الاعتماد الأكاديمي المؤسسي والبرامجي لمؤسسات التعليم
+            العالي
+          </div>
+
+          <div class="service-item">
+            ترجمة وتعريب المواقع الإلكترونية لمؤسسات التعليم العالي
+          </div>
+
+          <div class="service-item">
+            ترجمة الكتب في مختلف التخصصات الأكاديمية والعلمية
+          </div>
+        </div>
+
+        <!-- Image Placeholder -->
+        <div class="image-placeholder">
+          <img src="./2.jpeg" alt="خدمات الترجمة الأكاديمية" />
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+          <div class="contact-text">
+            📚 تواصل معنا الآن لترجمة أكاديمية دقيقة ومتخصصة
+          </div>
+          <a href="https://wa.me/+201005699966" class="whatsapp-button">
+            💬 تواصل معنا
+          </a>
+        </div>
+
+        <!-- Social Media -->
+        <div class="social-media">
+          <div style="font-size: 16px; color: #555; margin-bottom: 10px">
+            تابعونا على وسائل التواصل:
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 18px;
+              margin-top: 20px;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              href="https://academiaglobe.com/"
+              class="social-icon website"
+              title="الموقع الإلكتروني"
+              >🌐</a
+            >
+            <a
+              href="https://www.facebook.com/academiaglobe/?eid=ARCKfWnnamZfSBOqXJ1NRwOY6hE2W8-LB_Aq5dvjzw7qY0QajHzDIYWN_8VMd96Hhqh7jC7qIj8vOcoK"
+              class="social-icon facebook"
+              title="فيسبوك"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="https://www.youtube.com/channel/UC2GvsunRuuXj10Nz1uZVH-A?view_as=subscriber"
+              class="social-icon youtube"
+              title="يوتيوب"
+            >
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/academiaglobe/"
+              class="social-icon instagram"
+              title="إنستغرام"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://wa.me/+201005699966"
+              class="social-icon whatsapp-icon"
+              title="واتساب"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="signature">تحياتنا،</div>
+        <div class="experience">
+          فريق أكاديميا جلوب - خبرة 15 سنة في الترجمة الأكاديمية
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
