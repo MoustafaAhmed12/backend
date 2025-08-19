@@ -15,24 +15,33 @@ const PORT = 3000;
 
 // ------- CONFIG SMTP HOSTINGER -------
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.APP_PASSWORD,
-      },
-    });
-
-
-// const transporter = nodemailer.createTransport({
-//   host: process.env.SMTP_HOST,
-//   port: Number(process.env.SMTP_PORT),
-//   secure: process.env.SMTP_SECURE === "true",
-//   auth: {
-//     user: process.env.EMAIL,
-//     pass: process.env.EMAIL_PASS,
-//   },
-// });
+// Mail accounts configurations
+const mailers = {
+  "info@domain.com": {
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
+    auth: { user: "info@domain.com", pass: "PASS1" },
+  },
+  "sales@domain.com": {
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
+    auth: { user: "sales@domain.com", pass: "PASS2" },
+  },
+  "support@domain.com": {
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
+    auth: { user: "support@domain.com", pass: "PASS3" },
+  },
+  "marketing@domain.com": {
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
+    auth: { user: "marketing@domain.com", pass: "PASS4" },
+  },
+};
 
 function logResult(email, status, error = null) {
   const logsFile = "logs.json";
@@ -51,6 +60,7 @@ function logResult(email, status, error = null) {
 
 // ----------- BATCH SEND FUNCTION -----------
 async function sendBatch(
+  fromEmail, // NEW ✅
   emails,
   htmlContent,
   subject,
@@ -58,6 +68,9 @@ async function sendBatch(
   delayMs = 30000
 ) {
   let current = 0;
+
+  // صنع transporter بناءً على الإيميل المُرسل المختار
+  const transporter = nodemailer.createTransport(mailers[fromEmail]);
 
   return new Promise((resolve, reject) => {
     const interval = setInterval(async () => {
@@ -71,17 +84,18 @@ async function sendBatch(
 
       try {
         await transporter.sendMail({
-          from: `"Academia Globe" <${process.env.EMAIL}>`,
-          to: batch, // array → nodemailer سيأخذ أول 20 في الرسالة
+          from: `"Academia Globe" <${fromEmail}>`, // NEW ✅
+          to: batch,
           subject,
           html: htmlContent,
         });
+
         batch.forEach((e) => logResult(e, "sent"));
-        console.log("✔️ Sent batch to:", batch);
+        console.log("✔️ Sent batch from:", fromEmail, "to:", batch);
         current += batchSize;
       } catch (err) {
         batch.forEach((e) => logResult(e, "fail", err.message));
-        console.error("❌ Error sending batch: ", err);
+        console.error(`❌ Error sending batch from ${fromEmail}:`, err);
         clearInterval(interval);
         reject(err);
       }
@@ -92,12 +106,12 @@ async function sendBatch(
 // ----------- API ENDPOINT -----------
 app.post("/send-email", async (req, res) => {
   try {
-    const { templateName, emails, subject } = req.body;
+    const { fromEmail, templateName, emails, subject } = req.body;
     const filePath = path.join("templates", templateName);
 
     const htmlContent = fs.readFileSync(filePath, "utf-8");
 
-    await sendBatch(emails, htmlContent, subject);
+    await sendBatch(fromEmail, emails, htmlContent, subject);
 
     res.json({ success: true, message: "Started sending emails in batches!" });
   } catch (error) {
