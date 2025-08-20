@@ -4,13 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>خطوتك القادمة نحو الزمالة البريطانية تبدأ من أكاديميا جلوب</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link rel="stylesheet" />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap");
-
       * {
         margin: 0;
         padding: 0;
@@ -18,7 +13,7 @@
       }
 
       body {
-        font-family: "Cairo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: Arial, Tahoma, Geneva, Verdana, sans-serif;
         background: #0f3460;
         margin: 0;
         padding: 20px;
@@ -316,80 +311,6 @@
         box-shadow: 0 20px 50px rgba(40, 167, 69, 0.4);
       }
 
-      .social-media {
-        text-align: center;
-        margin: 50px 0 40px;
-        background: white;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .social-icons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 25px;
-        flex-wrap: wrap;
-      }
-
-      .social-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 26px;
-        transition: all 0.4s ease;
-        text-decoration: none;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .social-icon::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-          45deg,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        transform: scale(0);
-        transition: transform 0.5s;
-      }
-
-      .social-icon:hover::after {
-        transform: scale(1);
-      }
-
-      .facebook {
-        background: linear-gradient(135deg, #1877f2, #166fe5);
-      }
-      .youtube {
-        background: linear-gradient(135deg, #ff0000, #cc0000);
-      }
-      .instagram {
-        background: linear-gradient(135deg, #e4405f, #833ab4);
-      }
-      .whatsapp-icon {
-        background: linear-gradient(135deg, #25d366, #128c7e);
-      }
-      .website {
-        background: linear-gradient(135deg, #1a1a2e, #0f3460);
-      }
-
-      .social-icon:hover {
-        transform: translateY(-8px) scale(1.15);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-      }
-
       .footer {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         color: white;
@@ -484,14 +405,14 @@
       }
     </style>
   </head>
-  <body>
+  <body style="direction: rtl; text-align: right">
     <div class="email-container">
       <!-- Header -->
       <div class="header">
         <div class="fellowship-badge">Advance HE Fellowship</div>
         <div class="logo">
           <img
-            src="https://academiaglobe.com/images/logo.png"
+            src="https://academiaglobe.com/email/email_logo.png"
             alt="أكاديميا جلوب"
           />
         </div>
@@ -548,14 +469,30 @@
         </div>
 
         <!-- Image Placeholder -->
-        <div class="image-placeholder">
-          <img src="./3.jpeg" alt="خدمات الترجمة الأكاديمية" />
-        </div>
+        <table align="center">
+          <body>
+            <tr style="text-align: center">
+              <td align="center" style="padding: 0 10px 30px 10px">
+                <img
+                  src="https://academiaglobe.com/email/email2.jpeg"
+                  alt="خدمات الترجمة الأكاديمية"
+                  style="
+                    width: 80%;
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 12px;
+                    display: block;
+                  "
+                />
+              </td>
+            </tr>
+          </body>
+        </table>
 
         <div class="video-container">
           <div style="text-align: center">
             <a
-              href="https://www.facebook.com/share/v/1GVwatu6Rc/"
+              href="https://x.com/Academiaglobe_/status/1958208421074760083"
               class="video-button button-more"
             >
               ▶️ المزيد - شاهد الفيديو
@@ -563,7 +500,7 @@
           </div>
           <div style="text-align: center">
             <a
-              href="https://www.facebook.com/share/v/16n3uFGrC6/"
+              href="https://x.com/Academiaglobe_/status/1923083743469695445"
               class="video-button button-achievements"
             >
               ▶️ إنجازاتنا - شاهد الفيديو
@@ -583,310 +520,319 @@
         </div>
 
         <!-- Social Media -->
-        <div class="social-media">
-          <div style="font-size: 16px; color: #555; margin-bottom: 10px">
-            تابعونا على وسائل التواصل:
-          </div>
-          <!-- <tr>
-            <td
-              align="center"
-              style="font-size: 0px; padding: 5px; word-break: break-word"
-            >
+        <table width="100%" style="margin-top: 20px; margin-bottom: 20px">
+          <tr>
+            <td style="padding: 0 10px 30px 10px">
+              <table width="100%" style="margin-top: 20px; margin-bottom: 20px">
+                <tr>
+                  <td
+                    align="center"
+                    style="font-size: 16px; color: #555; padding-bottom: 10px"
+                  >
+                    تابعونا على وسائل التواصل:
+                  </td>
+                </tr>
 
-            
-
-              <table
-                align="center"
-                border="0"
-                cellpadding="0"
-                cellspacing="0"
-                role="presentation"
-                style="float: none; display: inline-table"
-              >
-                <tbody>
-                  <tr>
-                    <td style="padding: 0 10px; vertical-align: middle">
-                      <table
-                        border="0"
-                        cellpadding="0"
-                        cellspacing="0"
-                        role="presentation"
-                        style="border-radius: 0; width: 30px"
-                      >
-                        <tbody>
-                          <tr>
-                            <td
-                              style="
-                                font-size: 0;
-                                height: 30px;
-                                vertical-align: middle;
-                                width: 30px;
-                              "
+                <tr>
+                  <td
+                    align="center"
+                    style="font-size: 0px; padding: 5px; word-break: break-word"
+                  >
+                    <table
+                      align="center"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="float: none; display: inline-table"
+                    >
+                      <tbody>
+                        <tr>
+                          <td style="padding: 0 10px; vertical-align: middle">
+                            <table
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="border-radius: 0; width: 30px"
                             >
-                              <a
-              href="https://www.facebook.com/academiaglobe/?eid=ARCKfWnnamZfSBOqXJ1NRwOY6hE2W8-LB_Aq5dvjzw7qY0QajHzDIYWN_8VMd96Hhqh7jC7qIj8vOcoK"
-                                target="_blank"
-                                data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEVW%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3vUC6TX%26&amp;source=gmail&amp;ust=1755447788040000&amp;usg=AOvVaw1CO_eD3YoxpQIPO6jYb_Fy"
-                                ><img
-                                  alt="Visit our Facebook page"
-                                  height="30"
-                                  src="https://ci3.googleusercontent.com/meips/ADKq_NaGzsmPN5H_PCxZFIqYt4CekomU9qeh6gM9zH8tZJDcXWssOFrgkPdgzP-ykChRvZdp-PO4_-E3BYVTd0ABIry1UhZsRC9ODgOpMpOWOicd7v9zNRq9vOl02lOtbdqs4oGZJ_hbGJA=s0-d-e1-ft#https://us-as.gr-cdn.com/images/common/templates/messages/v2/social/facebook5.png"
-                                  style="border-radius: 0; display: block"
-                                  width="30"
-                                  class="CToWUd"
-                                  data-bit="iit"
-                              /></a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table
-                align="center"
-                border="0"
-                cellpadding="0"
-                cellspacing="0"
-                role="presentation"
-                style="float: none; display: inline-table"
-              >
-                <tbody>
-                  <tr>
-                    <td style="padding: 0 10px; vertical-align: middle">
-                      <table
-                        border="0"
-                        cellpadding="0"
-                        cellspacing="0"
-                        role="presentation"
-                        style="border-radius: 0; width: 30px"
-                      >
-                        <tbody>
-                          <tr>
-                            <td
-                              style="
-                                font-size: 0;
-                                height: 30px;
-                                vertical-align: middle;
-                                width: 30px;
-                              "
+                              <tbody>
+                                <tr>
+                                  <td
+                                    style="
+                                      font-size: 25px;
+                                      height: 30px;
+                                      vertical-align: middle;
+                                      width: 30px;
+                                    "
+                                  >
+                                    <a
+                                      href="https://academiaglobe.com/"
+                                      style="text-decoration: none"
+                                    >
+                                      🌐
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table
+                      align="center"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="float: none; display: inline-table"
+                    >
+                      <tbody>
+                        <tr>
+                          <td style="padding: 0 10px; vertical-align: middle">
+                            <table
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="border-radius: 0; width: 30px"
                             >
-                              <a
-                                href="https://mail.legiit.com/click.html?x=a62e&amp;co=b3Su&amp;lc=EV4&amp;mc=l&amp;s=O7h&amp;u=b&amp;z=3vtzGRG&amp;"
-                                target="_blank"
-                                data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEV4%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3vtzGRG%26&amp;source=gmail&amp;ust=1755447788040000&amp;usg=AOvVaw3Ce5djjRP2N5BNdvFsns2v"
-                                ><img
-                                  alt="Visit our Twitter page"
-                                  height="30"
-                                  src="https://ci3.googleusercontent.com/meips/ADKq_NaTi6zMvQLSwFdbmisRiH_ZLyy_9H1YtAF8RSg7ArNgqHjDjdQaAtkmLFfclncPro-odAct9ALtZZhFJck70jlXyjgk3qgdnV7q_4Ybq9D-LxTtkfcYkHQPdXBmDLtUpBzQvYHz1A=s0-d-e1-ft#https://us-as.gr-cdn.com/images/common/templates/messages/v2/social/twitter5.png"
-                                  style="border-radius: 0; display: block"
-                                  width="30"
-                                  class="CToWUd"
-                                  data-bit="iit"
-                              /></a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table
-                align="center"
-                border="0"
-                cellpadding="0"
-                cellspacing="0"
-                role="presentation"
-                style="float: none; display: inline-table"
-              >
-                <tbody>
-                  <tr>
-                    <td style="padding: 0 10px; vertical-align: middle">
-                      <table
-                        border="0"
-                        cellpadding="0"
-                        cellspacing="0"
-                        role="presentation"
-                        style="border-radius: 0; width: 30px"
-                      >
-                        <tbody>
-                          <tr>
-                            <td
-                              style="
-                                font-size: 0;
-                                height: 30px;
-                                vertical-align: middle;
-                                width: 30px;
-                              "
+                              <tbody>
+                                <tr>
+                                  <td
+                                    style="
+                                      font-size: 0;
+                                      height: 30px;
+                                      vertical-align: middle;
+                                      width: 30px;
+                                    "
+                                  >
+                                    <a
+                                      href="https://www.facebook.com/academiaglobe/"
+                                      target="_blank"
+                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEVW%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3vUC6TX%26&amp;source=gmail&amp;ust=1755532400468000&amp;usg=AOvVaw1G-li8NA-fpbbbkLpLqCOl"
+                                    >
+                                      <img
+                                        alt="Visit our Facebook page"
+                                        height="30"
+                                        src="https://academiaglobe-emails.netlify.app/imgs/face.png"
+                                        style="border-radius: 0; display: block"
+                                        width="30"
+                                        class="CToWUd"
+                                        data-bit="iit"
+                                      />
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table
+                      align="center"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="float: none; display: inline-table"
+                    >
+                      <tbody>
+                        <tr>
+                          <td style="padding: 0 10px; vertical-align: middle">
+                            <table
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="border-radius: 0; width: 30px"
                             >
-                              <a
-              href="https://www.instagram.com/academiaglobe/"
-                                target="_blank"
-                                data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEVO%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3GejaAS%26&amp;source=gmail&amp;ust=1755447788040000&amp;usg=AOvVaw24tf8_ImYVEbShGTuN0lCr"
-                                ><img
-                                  alt="Visit our Instagram page"
-                                  height="30"
-                                  src="https://ci3.googleusercontent.com/meips/ADKq_NaGLLaK7kiY1Vkz5n044k7dP4X3GjgjC7KF6euElcXQXQP3X3ufqOxMRPzERNTKjkCueW6MQZGdSKShfk7tA5Kp1WApEYgLkOzgrJkMGr4rXKPOg5YjGe-VA8j-dFaLeopVWxY82gO5=s0-d-e1-ft#https://us-as.gr-cdn.com/images/common/templates/messages/v2/social/instagram5.png"
-                                  style="border-radius: 0; display: block"
-                                  width="30"
-                                  class="CToWUd"
-                                  data-bit="iit"
-                              /></a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table
-                align="center"
-                border="0"
-                cellpadding="0"
-                cellspacing="0"
-                role="presentation"
-                style="float: none; display: inline-table"
-              >
-                <tbody>
-                  <tr>
-                    <td style="padding: 0 10px; vertical-align: middle">
-                      <table
-                        border="0"
-                        cellpadding="0"
-                        cellspacing="0"
-                        role="presentation"
-                        style="border-radius: 0; width: 30px"
-                      >
-                        <tbody>
-                          <tr>
-                            <td
-                              style="
-                                font-size: 0;
-                                height: 30px;
-                                vertical-align: middle;
-                                width: 30px;
-                              "
+                              <tbody>
+                                <tr>
+                                  <td
+                                    style="
+                                      font-size: 0;
+                                      height: 30px;
+                                      vertical-align: middle;
+                                      width: 30px;
+                                    "
+                                  >
+                                    <a
+                                      href="https://x.com/Academiaglobe_"
+                                      target="_blank"
+                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEV4%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3vtzGRG%26&amp;source=gmail&amp;ust=1755532400468000&amp;usg=AOvVaw0mes7sSsMyqFlQYhuJY4NZ"
+                                      ><img
+                                        alt="Visit our Twitter page"
+                                        height="30"
+                                        src="https://academiaglobe-emails.netlify.app/imgs/x.png"
+                                        style="border-radius: 0; display: block"
+                                        width="30"
+                                        class="CToWUd"
+                                        data-bit="iit"
+                                    /></a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table
+                      align="center"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="float: none; display: inline-table"
+                    >
+                      <tbody>
+                        <tr>
+                          <td style="padding: 0 10px; vertical-align: middle">
+                            <table
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="border-radius: 0; width: 30px"
                             >
-                              <a
-                                href="https://mail.legiit.com/click.html?x=a62e&amp;co=b3Su&amp;lc=EVk&amp;mc=l&amp;s=O7h&amp;u=b&amp;z=3GFEKKC&amp;"
-                                target="_blank"
-                                data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEVk%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3GFEKKC%26&amp;source=gmail&amp;ust=1755447788040000&amp;usg=AOvVaw0AzNfjkoGQtPRluy5EWQw6"
-                                ><img
-                                  alt="Visit our LinkedIn page"
-                                  height="30"
-                                  src="https://ci3.googleusercontent.com/meips/ADKq_NZOGb0-BgCkvs-ZDoYO_FFUgIgE2MfOzR5kkFNguIGjUkPtnUjBohvjwUlcWdmZegZEtB8OG0Iq6P2JE_lKiZqfNqJNYFUkVonYKpob32V0s4Xde6SwBir6KoGPUDCE6kMhQZbl98M=s0-d-e1-ft#https://us-as.gr-cdn.com/images/common/templates/messages/v2/social/linkedin5.png"
-                                  style="border-radius: 0; display: block"
-                                  width="30"
-                                  class="CToWUd"
-                                  data-bit="iit"
-                              /></a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table
-                align="center"
-                border="0"
-                cellpadding="0"
-                cellspacing="0"
-                role="presentation"
-                style="float: none; display: inline-table"
-              >
-                <tbody>
-                  <tr>
-                    <td style="padding: 0 10px; vertical-align: middle">
-                      <table
-                        border="0"
-                        cellpadding="0"
-                        cellspacing="0"
-                        role="presentation"
-                        style="border-radius: 0; width: 30px"
-                      >
-                        <tbody>
-                          <tr>
-                            <td
-                              style="
-                                font-size: 0;
-                                height: 30px;
-                                vertical-align: middle;
-                                width: 30px;
-                              "
+                              <tbody>
+                                <tr>
+                                  <td
+                                    style="
+                                      font-size: 0;
+                                      height: 30px;
+                                      vertical-align: middle;
+                                      width: 30px;
+                                    "
+                                  >
+                                    <a
+                                      href="https://www.instagram.com/academiaglobe/"
+                                      target="_blank"
+                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEVO%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3GejaAS%26&amp;source=gmail&amp;ust=1755532400468000&amp;usg=AOvVaw2CWNpMusRlA6H3IiVnNyA3"
+                                      ><img
+                                        alt="Visit our Instagram page"
+                                        height="30"
+                                        src="https://academiaglobe-emails.netlify.app/imgs/insta.png"
+                                        style="border-radius: 0; display: block"
+                                        width="30"
+                                        class="CToWUd"
+                                        data-bit="iit"
+                                    /></a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table
+                      align="center"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="float: none; display: inline-table"
+                    >
+                      <tbody>
+                        <tr>
+                          <td style="padding: 0 10px; vertical-align: middle">
+                            <table
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="border-radius: 0; width: 30px"
                             >
-                              <a
-              href="https://www.youtube.com/channel/UC2GvsunRuuXj10Nz1uZVH-A?view_as=subscriber"
-                                target="_blank"
-                                data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEf3%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3UEM6Ub%26&amp;source=gmail&amp;ust=1755447788040000&amp;usg=AOvVaw2QCgbMuQlx-dJM95EU_LHf"
-                                ><img
-                                  alt="Visit our YouTube page"
-                                  height="30"
-                                  src="https://ci3.googleusercontent.com/meips/ADKq_NYStprLJ1i92hgp4lZq4hGibnqoXgOKIksfdYycxmTwH9Ex8GsB0ks9vi6ux6C-k8BBODRfkgxEY4NZ345y8o7cXoWKS9XlWq0lrp4hS1d3uQi5L-LWD01gNImqA4-2ppsUHcoBSA=s0-d-e1-ft#https://us-as.gr-cdn.com/images/common/templates/messages/v2/social/youtube5.png"
-                                  style="border-radius: 0; display: block"
-                                  width="30"
-                                  class="CToWUd"
-                                  data-bit="iit"
-                              /></a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
+                              <tbody>
+                                <tr>
+                                  <td
+                                    style="
+                                      font-size: 0;
+                                      height: 30px;
+                                      vertical-align: middle;
+                                      width: 30px;
+                                    "
+                                  >
+                                    <a
+                                      href="https://www.linkedin.com/company/academia-globe"
+                                      target="_blank"
+                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEVk%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3GFEKKC%26&amp;source=gmail&amp;ust=1755532400469000&amp;usg=AOvVaw1cjf1-5Nc8bk_Edl9eET3o"
+                                      ><img
+                                        alt="Visit our LinkedIn page"
+                                        height="30"
+                                        src="https://academiaglobe-emails.netlify.app/imgs/link.png"
+                                        style="border-radius: 0; display: block"
+                                        width="30"
+                                        class="CToWUd"
+                                        data-bit="iit"
+                                    /></a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table
+                      align="center"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="float: none; display: inline-table"
+                    >
+                      <tbody>
+                        <tr>
+                          <td style="padding: 0 10px; vertical-align: middle">
+                            <table
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="border-radius: 0; width: 30px"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    style="
+                                      font-size: 0;
+                                      height: 30px;
+                                      vertical-align: middle;
+                                      width: 30px;
+                                    "
+                                  >
+                                    <a
+                                      href="https://www.youtube.com/channel/UC2GvsunRuuXj10Nz1uZVH-A?view_as=subscriber"
+                                      target="_blank"
+                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEf3%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3UEM6Ub%26&amp;source=gmail&amp;ust=1755532400469000&amp;usg=AOvVaw0MOEpfPDIP-uaDkrF5150s"
+                                      ><img
+                                        alt="Visit our YouTube page"
+                                        height="30"
+                                        src="https://academiaglobe-emails.netlify.app/imgs/you.png"
+                                        style="border-radius: 0; display: block"
+                                        width="30"
+                                        class="CToWUd"
+                                        data-bit="iit"
+                                    /></a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
               </table>
             </td>
-          </tr> -->
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              gap: 18px;
-              margin-top: 20px;
-              flex-wrap: wrap;
-            "
-          >
-            <a
-              href="https://academiaglobe.com/"
-              class="social-icon website"
-              title="الموقع الإلكتروني"
-              >🌐</a
-            >
-            <a
-              href="https://www.facebook.com/academiaglobe/?eid=ARCKfWnnamZfSBOqXJ1NRwOY6hE2W8-LB_Aq5dvjzw7qY0QajHzDIYWN_8VMd96Hhqh7jC7qIj8vOcoK"
-              class="social-icon facebook"
-              title="فيسبوك"
-            >
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a
-              href="https://www.youtube.com/channel/UC2GvsunRuuXj10Nz1uZVH-A?view_as=subscriber"
-              class="social-icon youtube"
-              title="يوتيوب"
-            >
-              <i class="fab fa-youtube"></i>
-            </a>
-            <a
-              href="https://www.instagram.com/academiaglobe/"
-              class="social-icon instagram"
-              title="إنستغرام"
-            >
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a
-              href="https://wa.me/+201005699966"
-              class="social-icon whatsapp-icon"
-              title="واتساب"
-            >
-              <i class="fab fa-whatsapp"></i>
-            </a>
-          </div>
-        </div>
+          </tr>
+        </table>
       </div>
 
       <!-- Footer -->
