@@ -4,844 +4,574 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>خطوتك القادمة نحو الزمالة البريطانية تبدأ من أكاديميا جلوب</title>
-    <link rel="stylesheet" />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: Arial, Tahoma, Geneva, Verdana, sans-serif;
-        background: #0f3460;
-        margin: 0;
-        padding: 20px;
-        line-height: 1.7;
-        position: relative;
-      }
-
-      .email-container {
-        max-width: 680px;
-        margin: 0 auto;
-        background: #fafbfd;
-        border-radius: 25px;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .header {
-        background: #16213e;
-        color: white;
-        padding: 55px 35px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .fellowship-badge {
-        display: inline-block;
-        gap: 10px;
-        background: #ffd700;
-        color: #1a1a2e;
-        padding: 8px 20px;
-        border-radius: 25px;
-        font-size: 14px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 2;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        gap: 18px;
-        font-size: 32px;
-        font-weight: 800;
-        margin-bottom: 20px;
-        flex-direction: row;
-        position: relative;
-        z-index: 2;
-      }
-
-      .logo img {
-        height: 90px;
-        width: auto;
-        border-radius: 10px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      }
-
-      .tagline {
-        font-size: 22px;
-        opacity: 0.95;
-        font-weight: 600;
-        margin-top: 15px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        position: relative;
-        z-index: 2;
-      }
-
-      .british-flag {
-        /* margin-bottom: 20px; */
-        display: block;
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-      }
-
-      .content {
-        padding: 50px 40px;
-        background: #f8fafc;
-      }
-
-      .greeting {
-        font-size: 24px;
-        color: #1a1a2e;
-        margin-bottom: 35px;
-        font-weight: 700;
-        text-align: start;
-      }
-
-      .main-text {
-        font-size: 18px;
-        color: #2d3748;
-        margin-bottom: 40px;
-        line-height: 2;
-        background: #edf2f7;
-        padding: 30px;
-        border-radius: 20px;
-        border-right: 5px solid #ffd700;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        position: relative;
-      }
-
-      .advance-he-section {
-        background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-        color: white;
-        padding: 40px;
-        border-radius: 25px;
-        margin: 40px 0;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .advance-he-title {
-        font-size: 24px;
-        font-weight: 800;
-        margin-bottom: 25px;
-        text-align: center;
-        color: #ffd700;
-      }
-
-      .advance-he-content {
-        font-size: 17px;
-        line-height: 2.1;
-        position: relative;
-        z-index: 2;
-      }
-
-      .services-section {
-        background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
-        padding: 40px;
-        border-radius: 25px;
-        margin: 40px 0;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .services-section::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 120px;
-        height: 120px;
-        background: linear-gradient(135deg, #0f3460, #1a1a2e);
-        opacity: 0.05;
-        border-radius: 50%;
-        transform: translate(-40px, 40px);
-      }
-
-      .services-title {
-        font-size: 22px;
-        color: #1a1a2e;
-        margin-bottom: 30px;
-        font-weight: 800;
-        text-align: center;
-        position: relative;
-        z-index: 2;
-      }
-
-      .service-item {
-        display: flex;
-        align-items: flex-start;
-        align-items: center;
-        margin-bottom: 20px;
-        font-size: 17px;
-        color: #2d3748;
-        line-height: 1.8;
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
-        border-right: 4px solid #0f3460;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        transition: all 0.3s ease;
-        position: relative;
-        z-index: 2;
-      }
-
-      .service-item:hover {
-        transform: translateX(-8px);
-        box-shadow: 0 10px 30px rgba(15, 52, 96, 0.15);
-      }
-
-      .service-item::before {
-        content: "⭐";
-        margin-left: 15px;
-        margin-top: 3px;
-        font-size: 20px;
-      }
-
-      .benefits-section {
-        background: #ffd700;
-        color: #1a1a2e;
-        padding: 35px;
-        border-radius: 20px;
-        margin: 40px 0;
-        text-align: center;
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 1.9;
-      }
-
-      .video-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        flex-wrap: wrap; /* عشان على الموبايل الأزرار تنزل تحت بعض */
-      }
-
-      .video-button {
-        display: inline-block;
-        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-        color: white;
-        padding: 10px 30px;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        box-shadow: 0 8px 25px rgba(185, 28, 28, 0.3);
-        white-space: nowrap; /* عشان النص ما يتكسرش */
-      }
-
-      .button-more {
-        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-        box-shadow: 0 8px 25px rgba(185, 28, 28, 0.3);
-      }
-
-      .button-more:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 35px rgba(185, 28, 28, 0.4);
-      }
-      .button-achievements {
-        background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
-        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-      }
-      .button-achievements:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
-      }
-
-      .cta-section {
-        text-align: center;
-        margin: 45px 0;
-        background: #fff;
-        padding: 35px;
-        border-radius: 20px;
-        border: 2px solid #ddd;
-      }
-
-      .cta-text {
-        font-size: 20px;
-        color: #333;
-        margin-bottom: 25px;
-        font-weight: 700;
-      }
-
-      .cta-button {
-        display: inline-block;
-        background: #496b89;
-        color: white;
-        padding: 8px 40px;
-        text-decoration: none;
-        border-radius: 60px;
-        font-weight: 800;
-        font-size: 20px;
-        margin: 8px 10px;
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .cta-button::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.4),
-          transparent
-        );
-        transition: left 0.6s;
-      }
-
-      .cta-button:hover::before {
-        left: 100%;
-      }
-
-      .cta-button:hover {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 20px 50px rgba(40, 167, 69, 0.4);
-      }
-
-      .footer {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        color: white;
-        padding: 40px;
-        text-align: center;
-        position: relative;
-      }
-
-      .footer::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #ffd700, #1a1a2e, #0f3460, #ffd700);
-      }
-
-      .signature {
-        font-size: 20px;
-        margin-bottom: 15px;
-        font-weight: 700;
-      }
-
-      .experience {
-        font-size: 16px;
-        opacity: 0.9;
-        font-weight: 400;
-      }
-
-      .image-placeholder {
-        width: 100%;
-        height: 300px;
-        border-radius: 20px;
-        overflow: hidden;
-        margin: 35px 0;
-        position: relative;
-      }
-
-      .image-placeholder img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-
-        display: block;
-      }
-
-      @media (max-width: 600px) {
-        body {
-          padding: 15px;
-        }
-        .content {
-          padding: 30px 25px;
-        }
-        .services-section,
-        .advance-he-section {
-          padding: 25px 20px;
-        }
-        .logo {
-          font-size: 28px;
-        }
-        .tagline {
-          font-size: 18px;
-        }
-        .social-icons {
-          gap: 15px;
-        }
-        .social-icon {
-          width: 55px;
-          height: 55px;
-          font-size: 22px;
-        }
-        .cta-button {
-          padding: 8px 20px;
-          font-size: 16px;
-          margin: 10px 5px;
-        }
-      }
-
-      @media (max-width: 576px) {
-        .logo {
-          flex-direction: column;
-          gap: 12px;
-        }
-        .main-text,
-        .service-item {
-          font-size: 16px;
-        }
-        .cta-section {
-          padding: 25px 20px;
-        }
-      }
-    </style>
   </head>
-  <body style="direction: rtl; text-align: right">
-    <div class="email-container">
-      <!-- Header -->
-      <div class="header">
-        <div class="fellowship-badge">Advance HE Fellowship</div>
-        <div class="logo">
-          <img
-            src="https://academiaglobe.com/email/email_logo.png"
-            alt="أكاديميا جلوب"
-          />
-        </div>
-        <div class="tagline">
-          خطوتك القادمة نحو الزمالة البريطانية تبدأ من هنا
-        </div>
-      </div>
+  <body
+    style="
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f3460;
+      direction: rtl;
+      text-align: right;
+    "
+  >
+    <!-- Main Container Table -->
+  <table align="center" width="400" style="width:400px; max-width:100%; background:#fafbfd; border-radius:15px; border-color:#0f3460; overflow:hidden;">
 
-      <!-- Content -->
-      <div class="content">
-        <div class="greeting">سعادة الدكتور/ة</div>
-
-        <div class="main-text">
-          في عالم التعليم العالي اليوم، لم يعد التميز الأكاديمي يقتصر على
-          المعرفة فقط، بل يتطلب معايير مهنية معترف بها دوليًا تعكس جودة ممارساتك
-          في التدريس.
-        </div>
-
-        <!-- Advance HE Section -->
-        <div class="advance-he-section">
-          <div class="advance-he-title">الزمالة البريطانية Advance HE</div>
-          <div class="advance-he-content">
-            تُعد إحدى أرقى الاعتمادات في التعليم العالي على مستوى العالم، حيث
-            تقيس جودة الممارسات المهنية في التدريس، والإدارة والقيادة
-            الأكاديمية، وهي الآن مطلب أساسي في العديد من الجامعات لأعضاء هيئة
-            التدريس والعمداء وصُنّاع القرار.
-          </div>
-        </div>
-
-        <!-- Services Section -->
-        <div class="services-section">
-          <div class="services-title">
-            في أكاديميا جلوب، نرافقك في رحلتك نحو الزمالة خطوة بخطوة:
-          </div>
-
-          <div class="service-item">
-            إرشادات شاملة خلال فترة إتمام إجراءات التسجيل والتقديم
-          </div>
-          <div class="service-item">
-            الدعم الكامل في إعداد تقارير الوصف المهني وخطابات التوصية
-          </div>
-          <div class="service-item">
-            ضمان استيفاء جميع المعايير اللازمة لاعتماد طلبك بنجاح
-          </div>
-          <div class="service-item">
-            المتابعة المستمرة حتى الحصول على الاعتماد
-          </div>
-        </div>
-
-        <!-- Benefits Section -->
-        <div class="benefits-section">
-          مع دعمنا، ستعزز مكانتك الأكاديمية، وتوسع آفاقك المهنية، وتفتح أبواب
-          فرص جديدة في التعليم العالي العالمي
-        </div>
-
-        <!-- Image Placeholder -->
-        <table align="center">
-          <body>
-            <tr style="text-align: center">
-              <td align="center" style="padding: 0 10px 30px 10px">
-                <img
-                  src="https://academiaglobe.com/email/email2.jpeg"
-                  alt="خدمات الترجمة الأكاديمية"
+      <tr>
+        <td>
+          <!-- Header Section -->
+          <table
+            width="100%"
+            style="
+              background: #16213e;
+              color: white;
+              padding: 30px 15px;
+              text-align: center;
+            "
+          >
+            <tr>
+              <td style="padding-bottom: 15px">
+                <div
                   style="
-                    width: 80%;
-                    max-width: 100%;
-                    height: auto;
-                    border-radius: 12px;
-                    display: block;
+                    display: inline-block;
+                    background: #ffd700;
+                    color: #1a1a2e;
+                    padding: 6px 15px;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    margin-bottom: 15px;
+                  "
+                >
+                  Advance HE Fellowship
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom: 15px">
+                <img
+                  src="https://academiaglobe.com/email/email_logo.png"
+                  alt="أكاديميا جلوب"
+                  style="
+                    height: 60px;
+                    width: auto;
+                    border-radius: 8px;
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
                   "
                 />
               </td>
             </tr>
-          </body>
-        </table>
+            <tr>
+              <td>
+                <div
+                  style="
+                    font-size: 16px;
+                    opacity: 0.95;
+                    font-weight: 600;
+                    margin-top: 10px;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                  "
+                >
+                  خطوتك القادمة نحو الزمالة البريطانية تبدأ من هنا
+                </div>
+              </td>
+            </tr>
+          </table>
 
-        <div class="video-container">
-          <div style="text-align: center">
-            <a
-              href="https://x.com/Academiaglobe_/status/1958208421074760083"
-              class="video-button button-more"
-            >
-              ▶️ المزيد - شاهد الفيديو
-            </a>
-          </div>
-          <div style="text-align: center">
-            <a
-              href="https://x.com/Academiaglobe_/status/1923083743469695445"
-              class="video-button button-achievements"
-            >
-              ▶️ إنجازاتنا - شاهد الفيديو
-            </a>
-          </div>
-        </div>
+          <!-- Content Section -->
+          <table width="100%" style="padding: 30px 10px; background: #f8fafc">
+            <tr>
+              <td>
+                <!-- Greeting -->
+                <div
+                  style="
+                    font-size: 18px;
+                    color: #1a1a2e;
+                    margin-bottom: 25px;
+                    font-weight: 700;
+                    text-align: right;
+                  "
+                >
+                  سعادة الدكتور/ة
+                </div>
 
-        <!-- CTA Section -->
-        <div class="cta-section">
-          <div class="cta-text">
-            📩 ابدأ رحلتك نحو الزمالة اليوم — كن بين نخبة الأكاديميين الحاصلين
-            على هذا الاعتماد المرموق
-          </div>
-          <a href="https://wa.me/+201005699966" class="cta-button">
-            🚀 ابدأ الآن
-          </a>
-        </div>
+                <!-- Main Text -->
+                <div
+                  style="
+                    font-size: 15px;
+                    color: #2d3748;
+                    margin-bottom: 30px;
+                    line-height: 1.8;
+                    background: #edf2f7;
+                    padding: 20px;
+                    border-radius: 15px;
+                    border-right: 4px solid #ffd700;
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+                  "
+                >
+                  في عالم التعليم العالي اليوم، لم يعد التميز الأكاديمي يقتصر
+                  على المعرفة فقط، بل يتطلب معايير مهنية معترف بها دوليًا تعكس
+                  جودة ممارساتك في التدريس.
+                </div>
 
-        <!-- Social Media -->
-        <table width="100%" style="margin-top: 20px; margin-bottom: 20px">
-          <tr>
-            <td style="padding: 0 10px 30px 10px">
-              <table width="100%" style="margin-top: 20px; margin-bottom: 20px">
-                <tr>
-                  <td
-                    align="center"
-                    style="font-size: 16px; color: #555; padding-bottom: 10px"
-                  >
-                    تابعونا على وسائل التواصل:
-                  </td>
-                </tr>
+                <!-- Advance HE Section -->
+                <table
+                  width="100%"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #1a1a2e 0%,
+                      #0f3460 100%
+                    );
+                    color: white;
+                    padding: 20px;
+                    border-radius: 20px;
+                    margin: 30px 0;
+                  "
+                >
+                  <tr>
+                    <td>
+                      <div
+                        style="
+                          font-size: 18px;
+                          font-weight: 800;
+                          margin-bottom: 20px;
+                          text-align: center;
+                          color: #ffd700;
+                        "
+                      >
+                        الزمالة البريطانية Advance HE
+                      </div>
+                      <div
+                        style="
+                          font-size: 14px;
+                          line-height: 1.8;
+                          text-align: right;
+                        "
+                      >
+                        تُعد إحدى أرقى الاعتمادات في التعليم العالي على مستوى
+                        العالم، حيث تقيس جودة الممارسات المهنية في التدريس،
+                        والإدارة والقيادة الأكاديمية، وهي الآن مطلب أساسي في
+                        العديد من الجامعات لأعضاء هيئة التدريس والعمداء وصُنّاع
+                        القرار.
+                      </div>
+                    </td>
+                  </tr>
+                </table>
 
-                <tr>
-                  <td
-                    align="center"
-                    style="font-size: 0px; padding: 5px; word-break: break-word"
-                  >
-                    <table
-                      align="center"
-                      border="0"
-                      cellpadding="0"
-                      cellspacing="0"
-                      role="presentation"
-                      style="float: none; display: inline-table"
-                    >
-                      <tbody>
-                        <tr>
-                          <td style="padding: 0 10px; vertical-align: middle">
-                            <table
-                              border="0"
-                              cellpadding="0"
-                              cellspacing="0"
-                              role="presentation"
-                              style="border-radius: 0; width: 30px"
-                            >
-                              <tbody>
-                                <tr>
-                                  <td
-                                    style="
-                                      font-size: 25px;
-                                      height: 30px;
-                                      vertical-align: middle;
-                                      width: 30px;
-                                    "
-                                  >
-                                    <a
-                                      href="https://academiaglobe.com/"
-                                      style="text-decoration: none"
-                                    >
-                                      🌐
-                                    </a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table
-                      align="center"
-                      border="0"
-                      cellpadding="0"
-                      cellspacing="0"
-                      role="presentation"
-                      style="float: none; display: inline-table"
-                    >
-                      <tbody>
-                        <tr>
-                          <td style="padding: 0 10px; vertical-align: middle">
-                            <table
-                              border="0"
-                              cellpadding="0"
-                              cellspacing="0"
-                              role="presentation"
-                              style="border-radius: 0; width: 30px"
-                            >
-                              <tbody>
-                                <tr>
-                                  <td
-                                    style="
-                                      font-size: 0;
-                                      height: 30px;
-                                      vertical-align: middle;
-                                      width: 30px;
-                                    "
-                                  >
-                                    <a
-                                      href="https://www.facebook.com/academiaglobe/"
-                                      target="_blank"
-                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEVW%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3vUC6TX%26&amp;source=gmail&amp;ust=1755532400468000&amp;usg=AOvVaw1G-li8NA-fpbbbkLpLqCOl"
-                                    >
-                                      <img
-                                        alt="Visit our Facebook page"
-                                        height="30"
-                                        src="https://academiaglobe-emails.netlify.app/imgs/face.png"
-                                        style="border-radius: 0; display: block"
-                                        width="30"
-                                        class="CToWUd"
-                                        data-bit="iit"
-                                      />
-                                    </a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table
-                      align="center"
-                      border="0"
-                      cellpadding="0"
-                      cellspacing="0"
-                      role="presentation"
-                      style="float: none; display: inline-table"
-                    >
-                      <tbody>
-                        <tr>
-                          <td style="padding: 0 10px; vertical-align: middle">
-                            <table
-                              border="0"
-                              cellpadding="0"
-                              cellspacing="0"
-                              role="presentation"
-                              style="border-radius: 0; width: 30px"
-                            >
-                              <tbody>
-                                <tr>
-                                  <td
-                                    style="
-                                      font-size: 0;
-                                      height: 30px;
-                                      vertical-align: middle;
-                                      width: 30px;
-                                    "
-                                  >
-                                    <a
-                                      href="https://x.com/Academiaglobe_"
-                                      target="_blank"
-                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEV4%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3vtzGRG%26&amp;source=gmail&amp;ust=1755532400468000&amp;usg=AOvVaw0mes7sSsMyqFlQYhuJY4NZ"
-                                      ><img
-                                        alt="Visit our Twitter page"
-                                        height="30"
-                                        src="https://academiaglobe-emails.netlify.app/imgs/x.png"
-                                        style="border-radius: 0; display: block"
-                                        width="30"
-                                        class="CToWUd"
-                                        data-bit="iit"
-                                    /></a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table
-                      align="center"
-                      border="0"
-                      cellpadding="0"
-                      cellspacing="0"
-                      role="presentation"
-                      style="float: none; display: inline-table"
-                    >
-                      <tbody>
-                        <tr>
-                          <td style="padding: 0 10px; vertical-align: middle">
-                            <table
-                              border="0"
-                              cellpadding="0"
-                              cellspacing="0"
-                              role="presentation"
-                              style="border-radius: 0; width: 30px"
-                            >
-                              <tbody>
-                                <tr>
-                                  <td
-                                    style="
-                                      font-size: 0;
-                                      height: 30px;
-                                      vertical-align: middle;
-                                      width: 30px;
-                                    "
-                                  >
-                                    <a
-                                      href="https://www.instagram.com/academiaglobe/"
-                                      target="_blank"
-                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEVO%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3GejaAS%26&amp;source=gmail&amp;ust=1755532400468000&amp;usg=AOvVaw2CWNpMusRlA6H3IiVnNyA3"
-                                      ><img
-                                        alt="Visit our Instagram page"
-                                        height="30"
-                                        src="https://academiaglobe-emails.netlify.app/imgs/insta.png"
-                                        style="border-radius: 0; display: block"
-                                        width="30"
-                                        class="CToWUd"
-                                        data-bit="iit"
-                                    /></a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table
-                      align="center"
-                      border="0"
-                      cellpadding="0"
-                      cellspacing="0"
-                      role="presentation"
-                      style="float: none; display: inline-table"
-                    >
-                      <tbody>
-                        <tr>
-                          <td style="padding: 0 10px; vertical-align: middle">
-                            <table
-                              border="0"
-                              cellpadding="0"
-                              cellspacing="0"
-                              role="presentation"
-                              style="border-radius: 0; width: 30px"
-                            >
-                              <tbody>
-                                <tr>
-                                  <td
-                                    style="
-                                      font-size: 0;
-                                      height: 30px;
-                                      vertical-align: middle;
-                                      width: 30px;
-                                    "
-                                  >
-                                    <a
-                                      href="https://www.linkedin.com/company/academia-globe"
-                                      target="_blank"
-                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEVk%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3GFEKKC%26&amp;source=gmail&amp;ust=1755532400469000&amp;usg=AOvVaw1cjf1-5Nc8bk_Edl9eET3o"
-                                      ><img
-                                        alt="Visit our LinkedIn page"
-                                        height="30"
-                                        src="https://academiaglobe-emails.netlify.app/imgs/link.png"
-                                        style="border-radius: 0; display: block"
-                                        width="30"
-                                        class="CToWUd"
-                                        data-bit="iit"
-                                    /></a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table
-                      align="center"
-                      border="0"
-                      cellpadding="0"
-                      cellspacing="0"
-                      role="presentation"
-                      style="float: none; display: inline-table"
-                    >
-                      <tbody>
-                        <tr>
-                          <td style="padding: 0 10px; vertical-align: middle">
-                            <table
-                              border="0"
-                              cellpadding="0"
-                              cellspacing="0"
-                              role="presentation"
-                              style="border-radius: 0; width: 30px"
-                            >
-                              <tbody>
-                                <tr>
-                                  <td
-                                    style="
-                                      font-size: 0;
-                                      height: 30px;
-                                      vertical-align: middle;
-                                      width: 30px;
-                                    "
-                                  >
-                                    <a
-                                      href="https://www.youtube.com/channel/UC2GvsunRuuXj10Nz1uZVH-A?view_as=subscriber"
-                                      target="_blank"
-                                      data-saferedirecturl="https://www.google.com/url?q=https://mail.legiit.com/click.html?x%3Da62e%26co%3Db3Su%26lc%3DEf3%26mc%3Dl%26s%3DO7h%26u%3Db%26z%3D3UEM6Ub%26&amp;source=gmail&amp;ust=1755532400469000&amp;usg=AOvVaw0MOEpfPDIP-uaDkrF5150s"
-                                      ><img
-                                        alt="Visit our YouTube page"
-                                        height="30"
-                                        src="https://academiaglobe-emails.netlify.app/imgs/you.png"
-                                        style="border-radius: 0; display: block"
-                                        width="30"
-                                        class="CToWUd"
-                                        data-bit="iit"
-                                    /></a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </div>
+                <!-- Services Section -->
+                <table
+                  width="100%"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #f0f4f8 0%,
+                      #e2e8f0 100%
+                    );
+                    padding: 20px 10px;
+                    border-radius: 20px;
+                    margin: 30px 0;
+                  "
+                >
+                  <tr>
+                    <td>
+                      <div
+                        style="
+                          font-size: 16px;
+                          color: #1a1a2e;
+                          margin-bottom: 25px;
+                          font-weight: 800;
+                          text-align: center;
+                        "
+                      >
+                        في أكاديميا جلوب، نرافقك في رحلتك نحو الزمالة خطوة
+                        بخطوة:
+                      </div>
 
-      <!-- Footer -->
-      <div class="footer">
-        <div class="signature">تحياتنا،</div>
-        <div class="experience">
-          فريق أكاديميا جلوب - خبرة 10 سنة في التأهيل للزمالة البريطانية
-        </div>
-      </div>
-    </div>
+                      <!-- Service Items -->
+                      <table width="100%" style="margin-bottom: 20px">
+                        <tr>
+                          <td
+                            style="
+                              font-size: 14px;
+                              color: #2d3748;
+                              line-height: 1.7;
+                              background: white;
+                              padding: 15px 8px;
+                              border-radius: 12px;
+                              border-right: 3px solid #0f3460;
+                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+                              margin-bottom: 15px;
+                            "
+                          >
+                            إرشادات شاملة خلال فترة إتمام إجراءات التسجيل
+                            والتقديم ⭐
+                          </td>
+                        </tr>
+                      </table>
+
+                      <table width="100%" style="margin-bottom: 20px">
+                        <tr>
+                          <td
+                            style="
+                              font-size: 14px;
+                              color: #2d3748;
+                              line-height: 1.7;
+                              background: white;
+                              padding: 15px 8px;
+                              border-radius: 12px;
+                              border-right: 3px solid #0f3460;
+                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+                              margin-bottom: 15px;
+                            "
+                          >
+                            الدعم الكامل في إعداد تقارير الوصف المهني وخطابات
+                            التوصية ⭐
+                          </td>
+                        </tr>
+                      </table>
+
+                      <table width="100%" style="margin-bottom: 20px">
+                        <tr>
+                          <td
+                            style="
+                              font-size: 14px;
+                              color: #2d3748;
+                              line-height: 1.7;
+                              background: white;
+                              padding: 15px 8px;
+                              border-radius: 12px;
+                              border-right: 3px solid #0f3460;
+                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+                              margin-bottom: 15px;
+                            "
+                          >
+                            ضمان استيفاء جميع المعايير اللازمة لاعتماد طلبك
+                            بنجاح ⭐
+                          </td>
+                        </tr>
+                      </table>
+
+                      <table width="100%">
+                        <tr>
+                          <td
+                            style="
+                              font-size: 14px;
+                              color: #2d3748;
+                              line-height: 1.7;
+                              background: white;
+                              padding: 15px 8px;
+                              border-radius: 12px;
+                              border-right: 3px solid #0f3460;
+                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+                            "
+                          >
+                            المتابعة المستمرة حتى الحصول على الاعتماد ⭐
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Benefits Section -->
+                <table
+                  width="100%"
+                  style="
+                    background: #496b89;
+                    color: #ddd;
+                    padding: 15px 8px;
+                    border-radius: 15px;
+                    margin: 30px 0;
+                  "
+                >
+                  <tr>
+                    <td
+                      style="
+                        text-align: center;
+                        font-size: 15px;
+                        font-weight: 600;
+                        line-height: 1.7;
+                      "
+                    >
+                      مع دعمنا، ستعزز مكانتك الأكاديمية، وتوسع آفاقك المهنية،
+                      وتفتح أبواب فرص جديدة في التعليم العالي العالمي
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Image Section -->
+                <table width="100%" style="padding: 0 10px 30px 10px">
+                  <tr>
+                    <td align="center">
+                      <img
+                        src="https://academiaglobe.com/email/email2.jpeg"
+                        alt="خدمات الترجمة الأكاديمية"
+                        style="
+                          width: 90%;
+                          max-width: 100%;
+                          height: auto;
+                          border-radius: 10px;
+                          display: block;
+                        "
+                      />
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Video Buttons Section -->
+                <table width="100%" style="margin: 20px 0">
+                  <tr>
+                    <td align="center">
+                      <table style="display: inline-table; margin: 0 10px">
+                        <tr>
+                          <td>
+                            <a
+                              href="https://x.com/Academiaglobe_/status/1958208421074760083"
+                              style="
+                                display: inline-block;
+                                background: linear-gradient(
+                                  135deg,
+                                  #dc2626 0%,
+                                  #b91c1c 100%
+                                );
+                                color: white;
+                                padding: 8px 20px;
+                                text-decoration: none;
+                                border-radius: 25px;
+                                font-weight: 600;
+                                font-size: 13px;
+                                box-shadow: 0 6px 20px rgba(185, 28, 28, 0.3);
+                              "
+                            >
+                              المزيد - شاهد الفيديو ▶️
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                      <table style="display: inline-table; margin: 0 10px">
+                        <tr>
+                          <td>
+                            <a
+                              href="https://x.com/Academiaglobe_/status/1923083743469695445"
+                              style="
+                                display: inline-block;
+                                background: linear-gradient(
+                                  135deg,
+                                  #2563eb 0%,
+                                  #1e3a8a 100%
+                                );
+                                color: white;
+                                padding: 8px 20px;
+                                text-decoration: none;
+                                border-radius: 25px;
+                                font-weight: 600;
+                                font-size: 13px;
+                                box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+                              "
+                            >
+                              إنجازاتنا - شاهد الفيديو ▶️
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- CTA Section -->
+                <table
+                  width="100%"
+                  style="
+                    text-align: center;
+                    margin: 30px 0;
+                    background: #fff;
+                    padding: 15px 8px;
+                    border-radius: 15px;
+                    border: 2px solid #ddd;
+                  "
+                >
+                  <tr>
+                    <td>
+                      <div
+                        style="
+                          font-size: 16px;
+                          color: #333;
+                          margin-bottom: 20px;
+                          font-weight: 700;
+                        "
+                      >
+                        ابدأ رحلتك نحو الزمالة اليوم — كن بين نخبة الأكاديميين
+                        الحاصلين على هذا الاعتماد المرموق 📩
+                      </div>
+                      <a
+                        href="https://wa.me/+201005699966"
+                        style="
+                          display: inline-block;
+                          background: #496b89;
+                          color: white;
+                          padding: 10px 30px;
+                          text-decoration: none;
+                          border-radius: 30px;
+                          font-weight: 800;
+                          font-size: 16px;
+                          margin: 8px 10px;
+                        "
+                      >
+                        ابدأ الآن 🚀
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Social Media Section -->
+                <table
+                  width="100%"
+                  style="margin-top: 20px; margin-bottom: 20px"
+                >
+                  <tr>
+                    <td
+                      align="center"
+                      style="font-size: 14px; color: #555; padding-bottom: 10px"
+                    >
+                      تابعونا على وسائل التواصل:
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding: 5px">
+                      <!-- Website -->
+                      <a
+                        href="https://academiaglobe.com/"
+                        style="
+                          text-decoration: none;
+                          margin: 0 8px;
+                          font-size: 20px;
+                        "
+                        >🌐</a
+                      >
+
+                      <!-- Facebook -->
+                      <a
+                        href="https://www.facebook.com/academiaglobe/"
+                        style="text-decoration: none; margin: 0 8px"
+                      >
+                        <img
+                          src="https://academiaglobe-emails.netlify.app/imgs/face.png"
+                          alt="Facebook"
+                          width="25"
+                          height="25"
+                          style="
+                            border-radius: 0;
+                            display: inline-block;
+                            vertical-align: middle;
+                          "
+                        />
+                      </a>
+
+                      <!-- Twitter/X -->
+                      <a
+                        href="https://x.com/Academiaglobe_"
+                        style="text-decoration: none; margin: 0 8px"
+                      >
+                        <img
+                          src="https://academiaglobe-emails.netlify.app/imgs/x.png"
+                          alt="Twitter"
+                          width="25"
+                          height="25"
+                          style="
+                            border-radius: 0;
+                            display: inline-block;
+                            vertical-align: middle;
+                          "
+                        />
+                      </a>
+
+                      <!-- Instagram -->
+                      <a
+                        href="https://www.instagram.com/academiaglobe/"
+                        style="text-decoration: none; margin: 0 8px"
+                      >
+                        <img
+                          src="https://academiaglobe-emails.netlify.app/imgs/insta.png"
+                          alt="Instagram"
+                          width="25"
+                          height="25"
+                          style="
+                            border-radius: 0;
+                            display: inline-block;
+                            vertical-align: middle;
+                          "
+                        />
+                      </a>
+
+                      <!-- LinkedIn -->
+                      <a
+                        href="https://www.linkedin.com/company/academia-globe"
+                        style="text-decoration: none; margin: 0 8px"
+                      >
+                        <img
+                          src="https://academiaglobe-emails.netlify.app/imgs/link.png"
+                          alt="LinkedIn"
+                          width="25"
+                          height="25"
+                          style="
+                            border-radius: 0;
+                            display: inline-block;
+                            vertical-align: middle;
+                          "
+                        />
+                      </a>
+
+                      <!-- YouTube -->
+                      <a
+                        href="https://www.youtube.com/channel/UC2GvsunRuuXj10Nz1uZVH-A?view_as=subscriber"
+                        style="text-decoration: none; margin: 0 8px"
+                      >
+                        <img
+                          src="https://academiaglobe-emails.netlify.app/imgs/you.png"
+                          alt="YouTube"
+                          width="25"
+                          height="25"
+                          style="
+                            border-radius: 0;
+                            display: inline-block;
+                            vertical-align: middle;
+                          "
+                        />
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Footer -->
+          <table
+            width="100%"
+            style="
+              background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+              color: white;
+              padding: 20px;
+              text-align: center;
+            "
+          >
+            <tr>
+              <td>
+                <div
+                  style="font-size: 16px; margin-bottom: 10px; font-weight: 700"
+                >
+                  تحياتنا،
+                </div>
+                <div style="font-size: 16px; opacity: 0.9; font-weight: 400">
+                  فريق أكاديميا جلوب - خبرة 10 سنة في التأهيل للزمالة البريطانية
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
