@@ -4,16 +4,27 @@ import cors from "cors";
 import fs from "fs";
 import path from "path";
 import dotenv from "dotenv";
+import { v4 as uuidv4 } from "uuid";
+import { Server } from "socket.io";
+import http from "http";
+import bodyParser from "body-parser";
 
 dotenv.config();
 
 const app = express();
+const server = http.createServer(app); // socket.io محتاج http server
+const io = new Server(server, {
+  cors: {
+    origin: "*", // ممكن تحدد الدومين بتاعك
+    methods: ["GET", "POST"],
+  },
+});
+
+app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 
 const PORT = 3000;
-
-// ------- CONFIG SMTP HOSTINGER -------
 
 // Mail accounts configurations
 const mailers = {
@@ -43,24 +54,48 @@ const mailers = {
   },
 };
 
-function logResult(email, status, error = null) {
+function readLogs() {
   const logsFile = "logs.json";
-  let logs = [];
-  if (fs.existsSync(logsFile)) {
-    logs = JSON.parse(fs.readFileSync(logsFile, "utf-8"));
+
+  if (!fs.existsSync(logsFile)) {
+    return [];
   }
-  logs.push({
+
+  const content = fs.readFileSync(logsFile, "utf-8").trim();
+
+  if (!content) {
+    return [];
+  }
+
+  try {
+    return JSON.parse(content);
+  } catch (err) {
+    console.error("⚠️ Error parsing logs.json:", err.message);
+    return [];
+  }
+}
+
+// ------------- LOG FUNCTION ----------------
+function logResult(id, email, status, error = null) {
+  const logsFile = "logs.json";
+  let logs = readLogs();
+  const logEntry = {
+    id,
     email,
     status,
     error,
     date: new Date().toISOString(),
-  });
+  };
+  logs.push(logEntry);
   fs.writeFileSync(logsFile, JSON.stringify(logs, null, 2));
+
+  // 🔥 ابعت الحالة للـ frontend عبر socket.io
+  io.emit("emailStatus", logEntry);
 }
 
 // ----------- BATCH SEND FUNCTION -----------
 async function sendBatch(
-  fromEmail, // NEW ✅
+  fromEmail,
   emails,
   htmlContent,
   subject,
@@ -68,9 +103,15 @@ async function sendBatch(
   delayMs = 30000
 ) {
   let current = 0;
-
-  // صنع transporter بناءً على الإيميل المُرسل المختار
   const transporter = nodemailer.createTransport(mailers[fromEmail]);
+
+  // const transporter = nodemailer.createTransport({
+  //   service: "gmail",
+  //   auth: {
+  //     user: process.env.EMAIL,
+  //     pass: process.env.APP_PASSWORD,
+  //   },
+  // });
 
   return new Promise((resolve, reject) => {
     const interval = setInterval(async () => {
@@ -83,18 +124,28 @@ async function sendBatch(
       }
 
       try {
-        await transporter.sendMail({
-          from: `"Academia Globe" <${fromEmail}>`, // NEW ✅
-          to: batch,
-          subject,
-          html: htmlContent,
-        });
+        for (const email of batch) {
+          const id = uuidv4(); // ID لكل رسالة
+          const trackedHtml = `
+            ${htmlContent}
+            <img src="https://backend-production-1e98.up.railway.app/track/${id}.png" 
+                 alt="" style="display:none;width:1px;height:1px;" />
+          `;
+          await transporter.sendMail({
+            // from: `"Academia Globe" <${fromEmail}>`,
+            from: `"Academia Globe" <${fromEmail}>`,
+            to: email,
+            subject,
+            html: trackedHtml,
+          });
 
-        batch.forEach((e) => logResult(e, "sent"));
-        console.log("✔️ Sent batch from:", fromEmail, "to:", batch);
+          logResult(id, email, "sent");
+          console.log(`✔️ Sent to: ${email} (id: ${id})`);
+        }
+
         current += batchSize;
       } catch (err) {
-        batch.forEach((e) => logResult(e, "fail", err.message));
+        batch.forEach((e) => logResult(uuidv4(), e, "fail", err.message));
         console.error(`❌ Error sending batch from ${fromEmail}:`, err);
         clearInterval(interval);
         reject(err);
@@ -120,12 +171,33 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-// New logs endpoint
+// ----------- TRACKING ENDPOINT -----------
+app.get("/track/:id.png", (req, res) => {
+  const { id } = req.params;
+  const logsFile = "logs.json";
+  if (fs.existsSync(logsFile)) {
+    const logs = JSON.parse(fs.readFileSync(logsFile, "utf-8"));
+    const log = logs.find((l) => l.id === id.replace(".png", ""));
+    if (log) {
+      log.status = "opened";
+      fs.writeFileSync(logsFile, JSON.stringify(logs, null, 2));
+      io.emit("emailStatus", log);
+    }
+  }
+
+  // رجع صورة شفافة صغيرة
+  const pixel = Buffer.from(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAjIBgU7tYKgAAAAASUVORK5CYII=",
+    "base64"
+  );
+  res.setHeader("Content-Type", "image/png");
+  res.send(pixel);
+});
+
+// ----------- LOGS ENDPOINT -----------
 app.get("/logs", (req, res) => {
   try {
-    if (!fs.existsSync("logs.json")) {
-      return res.json([]); // in case no log file yet
-    }
+    if (!fs.existsSync("logs.json")) return res.json([]);
     const logs = JSON.parse(fs.readFileSync("logs.json", "utf-8"));
     res.json(logs);
   } catch (err) {
@@ -135,6 +207,18 @@ app.get("/logs", (req, res) => {
 });
 
 // -----------------------------------------
-app.listen(PORT, () => {
+// socket events
+io.on("connection", (socket) => {
+  console.log("🟢 عميل متصل:", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("🔴 عميل فصل:", socket.id);
+  });
+});
+
+app.get("/", (req, res) => {
+  res.send("Server running with Socket.io ✅");
+});
+server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

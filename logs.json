@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1e537508-5cbe-46bb-8d4c-87898b1c701d",
+    "email": "ma0558317@gmail.com",
+    "status": "sent",
+    "error": null,
+    "date": "2025-08-22T17:13:28.638Z"
+  },
+  {
+    "id": "94db4b9a-03a3-47d3-8fed-6037a7399500",
+    "email": "ma0558317@gmail.com",
+    "status": "sent",
+    "error": null,
+    "date": "2025-08-22T17:31:42.038Z"
+  },
+  {
+    "id": "5944dc74-2342-4889-82e2-f6686483ff60",
+    "email": "moustafaahmedraghed@gmail.com",
+    "status": "sent",
+    "error": null,
+    "date": "2025-08-22T17:31:45.144Z"
+  },
+  {
+    "id": "745c51bb-705d-4a0f-950d-ba068a37cf0b",
+    "email": "psolvecompany@gmail.com",
+    "status": "sent",
+    "error": null,
+    "date": "2025-08-22T17:31:48.247Z"
+  }
+]
