@@ -76,7 +76,7 @@ function readLogs() {
 }
 
 // ------------- LOG FUNCTION ----------------
-function logResult(id, email, status, error = null, fromEmail = '') {
+function logResult(id, email, status, error = null) {
   const logsFile = "logs.json";
   let logs = readLogs();
   const logEntry = {
@@ -84,7 +84,6 @@ function logResult(id, email, status, error = null, fromEmail = '') {
     email,
     status,
     error,
-    fromEmail,
     date: new Date().toISOString(),
   };
   logs.push(logEntry);
@@ -140,13 +139,13 @@ async function sendBatch(
             html: trackedHtml,
           });
 
-          logResult(id, email, "sent", fromEmail);
+          logResult(id, email, "sent");
           console.log(`✔️ Sent to: ${email} (id: ${id})`);
         }
 
         current += batchSize;
       } catch (err) {
-        batch.forEach((e) => logResult(uuidv4(), e, "fail", err.message, fromEmail));
+        batch.forEach((e) => logResult(uuidv4(), e, "fail", err.message));
         console.error(`❌ Error sending batch from ${fromEmail}:`, err);
         clearInterval(interval);
         reject(err);
