@@ -70,7 +70,7 @@ function readLogs() {
   try {
     return JSON.parse(content);
   } catch (err) {
-    console.error("⚠️ Error parsing logs.json:", err.message);
+    console.error("⚠️ Error parsing logs.json:-", err.message);
     return [];
   }
 }
