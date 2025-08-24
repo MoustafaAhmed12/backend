@@ -28,30 +28,30 @@ const PORT = 3000;
 
 // Mail accounts configurations
 const mailers = {
-  "info@domain.com": {
+  "info@academiaglobe.com": {
     host: "smtp.hostinger.com",
     port: 465,
     secure: true,
-    auth: { user: "info@domain.com", pass: "PASS1" },
+    auth: { user: "info@academiaglobe.com", pass: "P@$$w0rd@15478#@" },
   },
-  "sales@domain.com": {
-    host: "smtp.hostinger.com",
-    port: 465,
-    secure: true,
-    auth: { user: "sales@domain.com", pass: "PASS2" },
-  },
-  "support@domain.com": {
-    host: "smtp.hostinger.com",
-    port: 465,
-    secure: true,
-    auth: { user: "support@domain.com", pass: "PASS3" },
-  },
-  "marketing@domain.com": {
-    host: "smtp.hostinger.com",
-    port: 465,
-    secure: true,
-    auth: { user: "marketing@domain.com", pass: "PASS4" },
-  },
+  // "sales@domain.com": {
+  //   host: "smtp.hostinger.com",
+  //   port: 465,
+  //   secure: true,
+  //   auth: { user: "sales@domain.com", pass: "PASS2" },
+  // },
+  // "support@domain.com": {
+  //   host: "smtp.hostinger.com",
+  //   port: 465,
+  //   secure: true,
+  //   auth: { user: "support@domain.com", pass: "PASS3" },
+  // },
+  // "marketing@domain.com": {
+  //   host: "smtp.hostinger.com",
+  //   port: 465,
+  //   secure: true,
+  //   auth: { user: "marketing@domain.com", pass: "PASS4" },
+  // },
 };
 
 function readLogs() {
@@ -76,7 +76,7 @@ function readLogs() {
 }
 
 // ------------- LOG FUNCTION ----------------
-function logResult(id, email, status, error = null) {
+function logResult(id, email, status, error = null, fromEmail = '') {
   const logsFile = "logs.json";
   let logs = readLogs();
   const logEntry = {
@@ -84,6 +84,7 @@ function logResult(id, email, status, error = null) {
     email,
     status,
     error,
+    fromEmail,
     date: new Date().toISOString(),
   };
   logs.push(logEntry);
@@ -139,13 +140,13 @@ async function sendBatch(
             html: trackedHtml,
           });
 
-          logResult(id, email, "sent");
+          logResult(id, email, "sent", fromEmail);
           console.log(`✔️ Sent to: ${email} (id: ${id})`);
         }
 
         current += batchSize;
       } catch (err) {
-        batch.forEach((e) => logResult(uuidv4(), e, "fail", err.message));
+        batch.forEach((e) => logResult(uuidv4(), e, "fail", err.message, fromEmail));
         console.error(`❌ Error sending batch from ${fromEmail}:`, err);
         clearInterval(interval);
         reject(err);
