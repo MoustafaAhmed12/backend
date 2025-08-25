@@ -114,29 +114,7 @@ async function sendBatch(
           const id = uuidv4();
           const trackedHtml = `
             ${htmlContent.replace(/{{EMAIL}}/g, email)}
-               <tr>
-              <td
-               
-                style="color: white; text-align: center; padding: 30px"
-              >
-                <div style="    text-align: center;
-                font-size: 14px;
-                color: #777;
-                margin-top: 20px; margin-bottom: 6px;">
-                  إذا كنت لا ترغب في استلام رسائلنا مجددًا،
-                </div>
-                <a
-                  href="https://backend-production-1e98.up.railway.app/unsubscribe?email={{EMAIL}}"
-                  style="
-                    color: #007bff;
-                    text-decoration: none;
-                    font-weight: bold;
-                  "
-                >
-                  اضغط هنا لإلغاء الاشتراك
-                </a>
-              </td>
-            </tr>
+           
             <img src="https://backend-production-1e98.up.railway.app/track/${id}.png" 
                  alt="" style="display:none;width:1px;height:1px;" />
           `;
@@ -147,11 +125,10 @@ async function sendBatch(
             to: email,
             subject,
             html: trackedHtml,
-              headers: {
-    // "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app?email=${email}>`,
-    "List-Unsubscribe": `<mailto:${fromEmail}>, <https://academiaglobe.com/?email=${email}>`,
-    "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"
-  },
+            headers: {
+              "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app/unsubscribe?email=${email}>`,
+              "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+            },
           });
 
           logResult(id, email, "sent");
@@ -221,7 +198,6 @@ app.get("/logs", (req, res) => {
   }
 });
 
-
 app.get("/unsubscribed", (req, res) => {
   try {
     if (!fs.existsSync("unsubscribed.json")) return res.json([]);
@@ -231,17 +207,16 @@ app.get("/unsubscribed", (req, res) => {
     res.json({
       success: true,
       count: unsubscribed.length,
-      data: unsubscribed
+      data: unsubscribed,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: "Error reading unsubscribed list"
+      message: "Error reading unsubscribed list",
     });
   }
 });
-
 
 app.get("/unsubscribe", (req, res) => {
   const email = req.query.email;
@@ -295,3 +270,31 @@ app.get("/", (req, res) => {
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+/*
+
+    <tr>
+              <td
+               
+                style="color: white; text-align: center; padding: 30px"
+              >
+                <div style="    text-align: center;
+                font-size: 14px;
+                color: #777;
+                margin-top: 20px; margin-bottom: 6px;">
+                  إذا كنت لا ترغب في استلام رسائلنا مجددًا،
+                </div>
+                <a
+                  href="https://backend-production-1e98.up.railway.app/unsubscribe?email={{EMAIL}}"
+                  style="
+                    color: #007bff;
+                    text-decoration: none;
+                    font-weight: bold;
+                  "
+                >
+                  اضغط هنا لإلغاء الاشتراك
+                </a>
+              </td>
+            </tr>
+
+*/
