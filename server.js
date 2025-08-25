@@ -34,24 +34,6 @@ const mailers = {
     secure: true,
     auth: { user: "info@academiaglobe.com", pass: "P@$$w0rd@15478#@" },
   },
-  // "sales@domain.com": {
-  //   host: "smtp.hostinger.com",
-  //   port: 465,
-  //   secure: true,
-  //   auth: { user: "sales@domain.com", pass: "PASS2" },
-  // },
-  // "support@domain.com": {
-  //   host: "smtp.hostinger.com",
-  //   port: 465,
-  //   secure: true,
-  //   auth: { user: "support@domain.com", pass: "PASS3" },
-  // },
-  // "marketing@domain.com": {
-  //   host: "smtp.hostinger.com",
-  //   port: 465,
-  //   secure: true,
-  //   auth: { user: "marketing@domain.com", pass: "PASS4" },
-  // },
 };
 
 function readLogs() {
@@ -125,18 +107,50 @@ async function sendBatch(
 
       try {
         for (const email of batch) {
-          const id = uuidv4(); // ID لكل رسالة
+          if (isUnsubscribed(email)) {
+            console.log(`⏩ Skipping unsubscribed: ${email}`);
+            continue;
+          }
+          const id = uuidv4();
           const trackedHtml = `
-            ${htmlContent}
+            ${htmlContent.replace(/{{EMAIL}}/g, email)}
+               <tr>
+              <td
+               
+                style="color: white; text-align: center; padding: 30px"
+              >
+                <div style="    text-align: center;
+                font-size: 14px;
+                color: #777;
+                margin-top: 20px; margin-bottom: 6px;">
+                  إذا كنت لا ترغب في استلام رسائلنا مجددًا،
+                </div>
+                <a
+                  href="https://backend-production-1e98.up.railway.app/unsubscribe?email={{EMAIL}}"
+                  style="
+                    color: #007bff;
+                    text-decoration: none;
+                    font-weight: bold;
+                  "
+                >
+                  اضغط هنا لإلغاء الاشتراك
+                </a>
+              </td>
+            </tr>
             <img src="https://backend-production-1e98.up.railway.app/track/${id}.png" 
                  alt="" style="display:none;width:1px;height:1px;" />
           `;
+
           await transporter.sendMail({
             // from: `"Academia Globe" <${fromEmail}>`,
             from: `"Academia Globe" <${fromEmail}>`,
             to: email,
             subject,
             html: trackedHtml,
+              headers: {
+    "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app?email=${email}>`,
+    "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"
+  },
           });
 
           logResult(id, email, "sent");
@@ -205,6 +219,64 @@ app.get("/logs", (req, res) => {
     res.status(500).json({ error: "Error reading logs file" });
   }
 });
+
+
+app.get("/unsubscribed", (req, res) => {
+  try {
+    if (!fs.existsSync("unsubscribed.json")) return res.json([]);
+    const data = fs.readFileSync(filePath, "utf-8");
+    const unsubscribed = JSON.parse(data);
+
+    res.json({
+      success: true,
+      count: unsubscribed.length,
+      data: unsubscribed
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Error reading unsubscribed list"
+    });
+  }
+});
+
+
+app.get("/unsubscribe", (req, res) => {
+  const email = req.query.email;
+
+  if (!email) {
+    return res.status(400).send("❌ Email is required");
+  }
+
+  // سجل الإيميل كـ unsubscribed
+  let unsubscribedFile = "unsubscribed.json";
+  let list = [];
+  if (fs.existsSync(unsubscribedFile)) {
+    list = JSON.parse(fs.readFileSync(unsubscribedFile, "utf-8"));
+  }
+
+  if (!list.includes(email)) {
+    list.push(email);
+    fs.writeFileSync(unsubscribedFile, JSON.stringify(list, null, 2));
+  }
+
+  res.send(`
+    <html>
+      <body style="font-family: Arial; text-align: center; padding: 40px;">
+        <h2>✅ تم إلغاء الاشتراك بنجاح</h2>
+        <p>لن يصلك المزيد من الرسائل من Academia Globe.</p>
+      </body>
+    </html>
+  `);
+});
+
+function isUnsubscribed(email) {
+  const unsubscribedFile = "unsubscribed.json";
+  if (!fs.existsSync(unsubscribedFile)) return false;
+  const list = JSON.parse(fs.readFileSync(unsubscribedFile, "utf-8"));
+  return list.includes(email);
+}
 
 // -----------------------------------------
 // socket events
