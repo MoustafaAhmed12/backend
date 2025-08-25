@@ -148,7 +148,8 @@ async function sendBatch(
             subject,
             html: trackedHtml,
               headers: {
-    "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app?email=${email}>`,
+    // "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app?email=${email}>`,
+    "List-Unsubscribe": `<mailto:${fromEmail}>, <https://academiaglobe.com/?email=${email}>`,
     "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"
   },
           });
