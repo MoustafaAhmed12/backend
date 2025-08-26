@@ -132,7 +132,6 @@ async function sendBatch(
           logResult(id, email, "sent");
           console.log(`✔️ Sent to: ${email} (id: ${id})`);
         }
-
         current += batchSize;
       } catch (err) {
         batch.forEach((e) => logResult(uuidv4(), e, "fail", err.message));
@@ -270,3 +269,31 @@ app.get("/", (req, res) => {
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+/*
+
+    <tr>
+              <td
+               
+                style="color: white; text-align: center; padding: 30px"
+              >
+                <div style="    text-align: center;
+                font-size: 14px;
+                color: #777;
+                margin-top: 20px; margin-bottom: 6px;">
+                  إذا كنت لا ترغب في استلام رسائلنا مجددًا،
+                </div>
+                <a
+                  href="https://backend-production-1e98.up.railway.app/unsubscribe?email={{EMAIL}}"
+                  style="
+                    color: #007bff;
+                    text-decoration: none;
+                    font-weight: bold;
+                  "
+                >
+                  اضغط هنا لإلغاء الاشتراك
+                </a>
+              </td>
+            </tr>
+
+*/
