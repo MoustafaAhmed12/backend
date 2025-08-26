@@ -114,7 +114,6 @@ async function sendBatch(
           const id = uuidv4();
           const trackedHtml = `
             ${htmlContent.replace(/{{EMAIL}}/g, email)}
-           
             <img src="https://backend-production-1e98.up.railway.app/track/${id}.png" 
                  alt="" style="display:none;width:1px;height:1px;" />
           `;
