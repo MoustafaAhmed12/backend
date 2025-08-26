@@ -85,7 +85,16 @@ async function sendBatch(
   delayMs = 30000
 ) {
   let current = 0;
-  const transporter = nodemailer.createTransport(mailers[fromEmail]);
+  // const transporter = nodemailer.createTransport(mailers[fromEmail]);
+const transporter = nodemailer.createTransport({
+  host: "smtp.hostinger.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: "info@academiaglobe.com",
+    pass: 'P@$$w0rd@15478#@',
+  },
+});
 
   // const transporter = nodemailer.createTransport({
   //   service: "gmail",
