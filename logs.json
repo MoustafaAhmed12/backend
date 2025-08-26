@@ -26,5 +26,19 @@
     "status": "sent",
     "error": null,
     "date": "2025-08-22T17:31:48.247Z"
+  },
+  {
+    "id": "d938a0c2-35dd-4035-9454-391d58d30608",
+    "email": "ma0558317@gmail.com",
+    "status": "sent",
+    "error": null,
+    "date": "2025-08-26T15:18:13.405Z"
+  },
+  {
+    "id": "d133aaf6-8bfa-4ac2-8a09-5cd00d1e162c",
+    "email": "ma0558317@gmail.com",
+    "status": "sent",
+    "error": null,
+    "date": "2025-08-26T15:18:46.844Z"
   }
 ]
