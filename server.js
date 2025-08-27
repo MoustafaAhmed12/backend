@@ -75,48 +75,98 @@ function logResult(id, email, status, error = null) {
   io.emit("emailStatus", logEntry);
 }
 
-// ----------- BATCH SEND FUNCTION -----------
-async function sendBatch(fromEmail, emails, htmlContent, subject) {
-  const transporter = nodemailer.createTransport(mailers[fromEmail]);
+async function sendBatch(fromEmail, emails, htmlContent, subject, batchSize = 20, delayMs = 30000) {
+  const transporter = nodemailer.createTransport({
+    ...mailers[fromEmail],
+    pool: true,
+    maxConnections: 3,
+    maxMessages: batchSize,
+  });
 
-  for (const email of emails) {
-    try {
-      if (isUnsubscribed(email)) {
-        console.log(`⏩ Skipping unsubscribed: ${email}`);
-        continue;
+  for (let i = 0; i < emails.length; i += batchSize) {
+    const batch = emails.slice(i, i + batchSize);
+
+    await Promise.all(batch.map(async (email) => {
+      try {
+        if (isUnsubscribed(email)) return console.log(`⏩ Skipping ${email}`);
+
+        const id = uuidv4();
+        const trackedHtml = `
+          ${htmlContent.replace(/{{EMAIL}}/g, email)}
+          <img src="https://backend-production-1e98.up.railway.app/track/${id}.png"
+               alt="" style="display:none;width:1px;height:1px;" />
+        `;
+
+        await transporter.sendMail({
+          from: `"Academia Globe" <${fromEmail}>`,
+          to: email,
+          subject,
+          html: trackedHtml,
+          headers: {
+            "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app/unsubscribe?email=${email}>`,
+            "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+          },
+        });
+
+        logResult(id, email, "sent");
+        console.log(`✔️ Sent to: ${email}`);
+      } catch (err) {
+        logResult(uuidv4(), email, "fail", err.message);
+        console.error(`❌ Error: ${email}`, err.message);
       }
+    }));
 
-      const id = uuidv4();
-      const trackedHtml = `
-        ${htmlContent.replace(/{{EMAIL}}/g, email)}
-        <img src="https://backend-production-1e98.up.railway.app/track/${id}.png" 
-             alt="" style="display:none;width:1px;height:1px;" />
-      `;
-
-      await transporter.sendMail({
-        from: `"Academia Globe" <${fromEmail}>`,
-        to: email,
-        subject,
-        html: trackedHtml,
-        headers: {
-          "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app/unsubscribe?email=${email}>`,
-          "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
-        },
-      });
-
-      logResult(id, email, "sent");
-      console.log(`✔️ Sent to: ${email} (id: ${id})`);
-    } catch (err) {
-      logResult(uuidv4(), email, "fail", err.message);
-      console.error(
-        `❌ Error sending email to ${email} from ${fromEmail}:`,
-        err
-      );
+    // استنى delay قبل ما تبعت الباتش اللي بعده
+    if (i + batchSize < emails.length) {
+      console.log(`⏳ Waiting ${delayMs / 1000}s before next batch...`);
+      await new Promise(res => setTimeout(res, delayMs));
     }
   }
-
-  console.log("✅ All emails sent!");
 }
+
+
+// ----------- BATCH SEND FUNCTION -----------
+// async function sendBatch(fromEmail, emails, htmlContent, subject) {
+//   const transporter = nodemailer.createTransport(mailers[fromEmail]);
+
+//   for (const email of emails) {
+//     try {
+//       if (isUnsubscribed(email)) {
+//         console.log(`⏩ Skipping unsubscribed: ${email}`);
+//         continue;
+//       }
+
+//       const id = uuidv4();
+//       const trackedHtml = `
+//         ${htmlContent.replace(/{{EMAIL}}/g, email)}
+//         <img src="https://backend-production-1e98.up.railway.app/track/${id}.png" 
+//              alt="" style="display:none;width:1px;height:1px;" />
+//       `;
+
+//       await transporter.sendMail({
+//         from: `"Academia Globe" <${fromEmail}>`,
+//         to: email,
+//         subject,
+//         html: trackedHtml,
+//         headers: {
+//           "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app/unsubscribe?email=${email}>`,
+//           "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+//         },
+//       });
+
+//       logResult(id, email, "sent");
+//       console.log(`✔️ Sent to: ${email} (id: ${id})`);
+//     } catch (err) {
+//       logResult(uuidv4(), email, "fail", err.message);
+//       console.error(
+//         `❌ Error sending email to ${email} from ${fromEmail}:`,
+//         err
+//       );
+//     }
+//   }
+
+//   console.log("✅ All emails sent!");
+// }
 
 // ----------- API ENDPOINT -----------
 app.post("/send-email", async (req, res) => {
