@@ -308,6 +308,23 @@ function isUnsubscribed(email) {
   return list.includes(email);
 }
 
+import net from "net";
+
+app.get("/debug-smtp", async (req, res) => {
+  const host = "smtp.hostinger.com";
+  const port = 465;
+
+  const socket = net.createConnection(port, host, () => {
+    res.json({ success: true, message: `Connected to ${host}:${port}` });
+    socket.end();
+  });
+
+  socket.on("error", (err) => {
+    res.status(500).json({ success: false, error: err.message });
+  });
+});
+
+
 // -----------------------------------------
 // socket events
 io.on("connection", (socket) => {
