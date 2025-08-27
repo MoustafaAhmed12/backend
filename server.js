@@ -74,55 +74,75 @@ function logResult(id, email, status, error = null) {
   // 🔥 ابعت الحالة للـ frontend عبر socket.io
   io.emit("emailStatus", logEntry);
 }
-
 async function sendBatch(fromEmail, emails, htmlContent, subject, batchSize = 20, delayMs = 30000) {
-  const transporter = nodemailer.createTransport({
-    ...mailers[fromEmail],
-    pool: true,
-    maxConnections: 3,
-    maxMessages: batchSize,
-  });
+  // const transporter = nodemailer.createTransport({
+  //   mailers[fromEmail],
+  //   pool: true,
+  //   maxConnections: 3,
+  //   maxMessages: batchSize,
+  // });
+
+   const transporter = nodemailer.createTransport(mailers[fromEmail]);
+
+  let results = { sent: 0, failed: 0, errors: [] };
 
   for (let i = 0; i < emails.length; i += batchSize) {
     const batch = emails.slice(i, i + batchSize);
 
-    await Promise.all(batch.map(async (email) => {
-      try {
-        if (isUnsubscribed(email)) return console.log(`⏩ Skipping ${email}`);
+    try {
+      await Promise.all(batch.map(async (email) => {
+        try {
+          if (isUnsubscribed(email)) {
+            console.log(`⏩ Skipping ${email}`);
+            return;
+          }
 
-        const id = uuidv4();
-        const trackedHtml = `
-          ${htmlContent.replace(/{{EMAIL}}/g, email)}
-          <img src="https://backend-production-1e98.up.railway.app/track/${id}.png"
-               alt="" style="display:none;width:1px;height:1px;" />
-        `;
+          const id = uuidv4();
+          const trackedHtml = `
+            ${htmlContent.replace(/{{EMAIL}}/g, email)}
+            <img src="https://backend-production-1e98.up.railway.app/track/${id}.png"
+                 alt="" style="display:none;width:1px;height:1px;" />
+          `;
 
-        await transporter.sendMail({
-          from: `"Academia Globe" <${fromEmail}>`,
-          to: email,
-          subject,
-          html: trackedHtml,
-          headers: {
-            "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app/unsubscribe?email=${email}>`,
-            "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
-          },
-        });
+          await transporter.sendMail({
+            from: `"Academia Globe" <${fromEmail}>`,
+            to: email,
+            subject,
+            html: trackedHtml,
+            headers: {
+              "List-Unsubscribe": `<mailto:${fromEmail}>, <https://backend-production-1e98.up.railway.app/unsubscribe?email=${email}>`,
+              "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+            },
+          });
 
-        logResult(id, email, "sent");
-        console.log(`✔️ Sent to: ${email}`);
-      } catch (err) {
-        logResult(uuidv4(), email, "fail", err.message);
-        console.error(`❌ Error: ${email}`, err.message);
-      }
-    }));
+          logResult(id, email, "sent");
+          results.sent++;
+          console.log(`✔️ Sent to: ${email}`);
+        } catch (err) {
+          logResult(uuidv4(), email, "fail", err.message);
+          results.failed++;
+          results.errors.push({ email, error: err.message });
 
-    // استنى delay قبل ما تبعت الباتش اللي بعده
+          if (!["EENVELOPE", "550", "551"].includes(err.code) && ![550, 551].includes(err.responseCode)) {
+            throw new Error(`Critical error while sending to ${email}: ${err.message}`);
+          }
+        }
+      }));
+    } catch (batchErr) {
+      console.error(`❌ Batch stopped: ${batchErr.message}`);
+      results.errors.push({ batch: i / batchSize + 1, error: batchErr.message });
+      return { success: false, ...results };
+    }
+
     if (i + batchSize < emails.length) {
       console.log(`⏳ Waiting ${delayMs / 1000}s before next batch...`);
       await new Promise(res => setTimeout(res, delayMs));
     }
   }
+
+  return { success: true, ...results };
 }
+
 
 
 // ----------- BATCH SEND FUNCTION -----------
@@ -174,16 +194,26 @@ app.post("/send-email", async (req, res) => {
     const { fromEmail, templateName, emails, subject } = req.body;
     const filePath = path.join("templates", templateName);
 
+    if (!fs.existsSync(filePath)) {
+      return res.status(400).json({ success: false, message: "Template not found" });
+    }
+
     const htmlContent = fs.readFileSync(filePath, "utf-8");
 
-    await sendBatch(fromEmail, emails, htmlContent, subject);
+    const result = await sendBatch(fromEmail, emails, htmlContent, subject);
 
-    res.json({ success: true, message: "Started sending emails in batches!" });
+    if (result.success) {
+      res.json({ success: true, message: "Batch finished", stats: result });
+    } else {
+      res.status(500).json({ success: false, message: "Batch stopped due to error", stats: result });
+    }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: "Error sending emails" });
+    console.error("❌ API Error:", error);
+    res.status(500).json({ success: false, message: "Server error", error: error.message });
   }
 });
+
+
 
 // ----------- TRACKING ENDPOINT -----------
 app.get("/track/:id.png", (req, res) => {
